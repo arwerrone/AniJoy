@@ -1,0 +1,7 @@
+{
+  "name": "AniJoy",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

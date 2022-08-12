@@ -11,6 +11,7 @@ export class AppComponent {
     { title: 'Search', url: '/search', icon: 'paper-plane' },
     { title: 'Random Quote', url: '/quote', icon: 'archive' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+
+  
   constructor() {}
 }

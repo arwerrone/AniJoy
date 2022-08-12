@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimeService } from '../services/anime.service';
+
+
+///tesdte
+
+
+
+///teste
 
 @Component({
   selector: 'app-home',
@@ -7,9 +15,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private animeService: AnimeService) { }
 
   ngOnInit() {
+    this.testFunction();
   }
+
+  testFunction(){
+    this.animeService.getTopAnimes().subscribe( data => {
+      console.log(data);
+    })
+  }
+
 
 }

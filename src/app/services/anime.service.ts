@@ -12,6 +12,7 @@ const api_key = '8945cdd55emshdd923e137a7cc2dp1bf431jsn52087ee7fa89';
 export interface Favorite{
   malID: string,
   name: string,
+  img: string,
 }
 
 const ANIME_KEY = 'my-animes';
@@ -119,6 +120,26 @@ export class AnimeService {
           await alert.present();
         }
       }
+    })
+  }
+
+  loadFavorites(){
+    return this.storage.get(ANIME_KEY);
+  }
+
+  deleteFromFavorite(malID){
+    this.storage.get(ANIME_KEY).then((animes: Favorite[]) => {
+      if(!animes || animes.length === 0){
+        return null;
+      }
+
+      let toKeep: Favorite[] = [];
+      for(let i of animes){
+        if(i.malID != malID){
+          toKeep.push(i);
+        }
+      }
+      return this.storage.set(ANIME_KEY, toKeep);
     })
   }
 

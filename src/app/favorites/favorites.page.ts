@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimeService, Favorite } from '../services/anime.service';
 
 @Component({
   selector: 'app-favorites',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritesPage implements OnInit {
 
-  constructor() { }
+  favoriteList: Favorite[] = null;
+
+  constructor(private animeService: AnimeService) { }
 
   ngOnInit() {
+    this.loadFavList();
+  }
+  ionViewWillEnter(){
+    this.loadFavList();
+  }
+
+  loadFavList(){
+    this.animeService.loadFavorites().then(animes => {
+      this.favoriteList = animes;
+    })
+  }
+
+  removeFavorite(toRemove){
+    this.animeService.deleteFromFavorite(toRemove.malID);
+    window.location.reload();
   }
 
 }

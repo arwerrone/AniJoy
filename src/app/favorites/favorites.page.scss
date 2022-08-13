@@ -1,3 +1,27 @@
 ion-menu-button {
     color: var(--ion-color-primary);
   }
+
+  ion-item {
+    --max-height: 150px;
+  }
+  
+  .thumbnail {
+    height: 80px;
+    width: 60px;
+  }
+
+  ion-thumbnail {
+    --border-radius: 12px;
+  }
+
+h2{
+  font-size: 25px;
+}
+
+.centerr {
+  display: flex;
+  height: auto;
+  justify-content: center;
+  text-align: center;
+}

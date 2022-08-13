@@ -27,7 +27,8 @@ export class DetailsPage implements OnInit {
 
   toFav: Favorite = {
     malID: "",
-    name: ""
+    name: "",
+    img: "",
   }
 
   constructor(private activated_route: ActivatedRoute, private animeService: AnimeService) { }
@@ -98,6 +99,7 @@ export class DetailsPage implements OnInit {
   addFavorites(){
     this.toFav.malID = this.malID;
     this.toFav.name = this.aniTitle;
+    this.toFav.img = this.thumbNail;
     this.animeService.addAniveFavorite(this.toFav);
 
   }

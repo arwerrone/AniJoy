@@ -81,7 +81,7 @@
     </ion-slides>
 
 
-    <div *ngIf="videos else noVideo">
+    <div *ngIf="videos != '' else noVideo">
       <ion-grid *ngFor="let video of videos">
         <ion-row class="ion-align-items-center">
           <ion-col class="ion-text-center">
@@ -92,7 +92,7 @@
       </ion-grid>
     </div>
     <ng-template #noVideo>
-      <h3 class="centerr">No Video :(</h3>
+      <h3 style="padding-bottom: 50px; padding-top: 50px;" class="centerr">No Video :(</h3>
     </ng-template>
 
 

@@ -9,7 +9,7 @@
 
 <ion-content>
 
-  <div *ngIf="favoriteList != '' else noFavorite">
+  <div *ngIf="favoriteList != '' && favoriteList else noFavorite">
     <ion-list style="padding-top: 2rem;" *ngFor="let fav of favoriteList">
       <ion-item-sliding>
         <ion-item [routerLink]="['../details/', fav.malID, fav.name]">

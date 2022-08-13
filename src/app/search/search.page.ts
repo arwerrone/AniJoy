@@ -29,6 +29,18 @@ export class SearchPage implements OnInit {
     }else{
       this.animeService.searchAnime(toQuery.toLocaleLowerCase()).subscribe( data => {
         this.result = data;
+      }, async error => {
+        const alert = await this.alertController.create({
+          header: 'Fail to search',
+          message: 'Took too long, for API response, try searching a different title',
+          buttons: [{
+            text: 'OK',
+            handler: () => {
+              window.location.reload();
+            }
+          }]
+        });
+        await alert.present();
       })
     }
 

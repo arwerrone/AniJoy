@@ -22,6 +22,7 @@ export class DetailsPage implements OnInit {
   members: number;
   score: number;
   extraPictures: any;
+  videos: any;
 
 
   constructor(private activated_route: ActivatedRoute, private animeService: AnimeService) { }
@@ -49,9 +50,6 @@ export class DetailsPage implements OnInit {
       data.forEach( element =>{
         if(element.mal_id == this.malID){
           
-          //console.log(element);
-          //console.log(typeof(element.score));
-
           this.thumbNail = element.image_url;
           this.aniSynopsis = element.synopsis; //Sometimes the Sysnopsis is incomplete because the API couldn't give it full
           this.url = element.url;
@@ -70,20 +68,30 @@ export class DetailsPage implements OnInit {
     })
 
     this.getPictures();
-
+    this.getVideos();
     this.loaded = true;
 
   }
 
-  redirectToExternal(){
-    window.open(this.url, '_system', 'location=yes');
+  redirectToExternal(url){
+    window.open(url, '_system', 'location=yes');
   }
 
   getPictures(){
     this.animeService.getPictureForDetails(this.malID).subscribe( data =>{
-      console.log(data);
       this.extraPictures = data;
 
     })
   }
+
+  getVideos(){
+    this.animeService.getVideosForDetails(this.malID).subscribe( data => {
+      this.videos = data;
+    })
+  }
+
+  addFavorites(){
+    console.log("TODO");
+  }
+
 }

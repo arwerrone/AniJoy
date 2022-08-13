@@ -4,6 +4,9 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>{{aniTitle}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addFavorites()" style="color: #006ee6">Save&nbsp;<ion-icon style="color: #006ee6" name="star"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -21,7 +24,7 @@
           <h2>{{aniTitle}}</h2>
           <h3>Synopsis:</h3>
           <p> {{aniSynopsis}}</p> <!--Sometimes the Sysnopsis is incomplete because the API couldn't give it full-->
-          <ion-button (click)="redirectToExternal($event)">More details</ion-button>
+          <ion-button (click)="redirectToExternal(url)">More details</ion-button>
         </ion-col>
       </ion-row>
     
@@ -76,6 +79,22 @@
         </ion-card>
       </ion-slide>
     </ion-slides>
+
+
+    <div *ngIf="videos else noVideo">
+      <ion-grid *ngFor="let video of videos">
+        <ion-row class="ion-align-items-center">
+          <ion-col class="ion-text-center">
+            <h3>{{video.title}}</h3>
+            <img src="{{video.image_url}}" (click)="redirectToExternal(video.video_url)" >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <ng-template #noVideo>
+      <h3 class="centerr">No Video :(</h3>
+    </ng-template>
+
 
 
   </div>

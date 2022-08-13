@@ -14,7 +14,6 @@ export class AnimeService {
 
 
 
-
   constructor(private http: HttpClient) { }
 
   
@@ -47,7 +46,16 @@ export class AnimeService {
       }
     }).pipe(
       map(data => data['pictures']));
+  }
 
+  getVideosForDetails(id){
+    return this.http.get(`${URL}anime/${id}/videos`,{
+      headers: {
+        'X-RapidAPI-Key': api_key,
+        'X-RapidAPI-Host': api_host
+      }
+    }).pipe(
+      map(data => data['promo']));
   }
 
 }

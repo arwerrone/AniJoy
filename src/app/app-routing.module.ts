@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   },
   {
-    path: 'details',
+    path: 'details/:id/:title',
     loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
   }
 ];

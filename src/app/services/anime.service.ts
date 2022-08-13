@@ -28,5 +28,16 @@ export class AnimeService {
       map(data => data['top']));
   }
 
+  searchAnime(que){
+    return this.http.get(`${URL}search/anime`,{
+      params: {q: que},
+      headers: {
+        'X-RapidAPI-Key': api_key,
+        'X-RapidAPI-Host': api_host
+      }
+    }).pipe(
+      map(data => data['results']));
+  }
+
 
 }

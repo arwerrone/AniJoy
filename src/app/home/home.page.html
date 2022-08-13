@@ -10,7 +10,8 @@
 <ion-content>
 
   <ion-list *ngFor="let ani of animes">
-    <ion-item>
+    <!--<ion-item (click)="itemSelected(ani)">-->
+    <ion-item [routerLink]="['../details/', ani.mal_id, ani.title]">
       <ion-thumbnail class="thumbnail" slot="start">
         <ion-img [src]="ani.image_url"></ion-img>
       </ion-thumbnail>

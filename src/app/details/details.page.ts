@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { AnimeService } from '../services/anime.service';
+import { AnimeService, Favorite } from '../services/anime.service';
 
 @Component({
   selector: 'app-details',
@@ -24,6 +24,11 @@ export class DetailsPage implements OnInit {
   extraPictures: any;
   videos: any;
 
+
+  toFav: Favorite = {
+    malID: "",
+    name: ""
+  }
 
   constructor(private activated_route: ActivatedRoute, private animeService: AnimeService) { }
 
@@ -91,7 +96,10 @@ export class DetailsPage implements OnInit {
   }
 
   addFavorites(){
-    console.log("TODO");
+    this.toFav.malID = this.malID;
+    this.toFav.name = this.aniTitle;
+    this.animeService.addAniveFavorite(this.toFav);
+
   }
 
 }

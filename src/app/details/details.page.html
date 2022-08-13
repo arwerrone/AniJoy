@@ -9,62 +9,71 @@
 
 <ion-content>
 
-<div style="padding-top: 1rem ;" class="centerr">
-  <img  src="{{thumbNail}}"/>
-</div>
+  <div *ngIf="loaded else notLoaded">
 
-<ion-grid>
-  <ion-row class="ion-align-items-center">
-    <ion-col class="ion-text-center">
-      <h2>{{aniTitle}}</h2>
-      <h3>Synopsis:</h3>
-      <p> {{aniSynopsis}}</p> <!--Sometimes the Sysnopsis is incomplete because the API couldn't give it full-->
-      <ion-button (click)="redirectToExternal($event)">More details</ion-button>
-    </ion-col>
-  </ion-row>
+    <div style="padding-top: 1rem ;" class="centerr">
+      <img  src="{{thumbNail}}"/>
+    </div>
+    
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-center">
+          <h2>{{aniTitle}}</h2>
+          <h3>Synopsis:</h3>
+          <p> {{aniSynopsis}}</p> <!--Sometimes the Sysnopsis is incomplete because the API couldn't give it full-->
+          <ion-button (click)="redirectToExternal($event)">More details</ion-button>
+        </ion-col>
+      </ion-row>
+    
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-center">
+          <h3>Type:</h3>
+          <h3>{{type}}</h3>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <h3>Episodes:</h3>
+          <h3>{{episodes}}</h3>
+        </ion-col>
+      </ion-row>
+    
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-center">
+          <h3>Start Date:</h3>
+          <h3 *ngIf="startDate else noStartDate">{{startDate | date: 'dd/MM/yyyy'}}</h3>
+          <ng-template #noStartDate>
+            <h3>Not Announced</h3>
+          </ng-template>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <h3>End Date:</h3>
+          <h3 *ngIf="endDate else noEndDate">{{endDate | date: 'dd/MM/yyyy'}}</h3>
+          <ng-template #noEndDate>
+            <h3>Not Announced</h3>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-center">
+          <h3>Members:</h3>
+          <h3>{{members}}</h3>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <h3>Score:</h3>
+          <h3 *ngIf="score != 0 else noScore">{{score}}</h3>
+          <ng-template #noScore>
+            <h3>No Score</h3>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    
+    </ion-grid>
 
-  <ion-row class="ion-align-items-center">
-    <ion-col class="ion-text-center">
-      <h3>Type:</h3>
-      <h3>{{type}}</h3>
-    </ion-col>
-    <ion-col class="ion-text-center">
-      <h3>Episodes:</h3>
-      <h3>{{episodes}}</h3>
-    </ion-col>
-  </ion-row>
+  </div>
 
-  <ion-row class="ion-align-items-center">
-    <ion-col class="ion-text-center">
-      <h3>Start Date:</h3>
-      <h3 *ngIf="startDate else noStartDate">{{startDate | date: 'dd/MM/yyyy'}}</h3>
-      <ng-template #noStartDate>
-        <h3>Not Announced</h3>
-      </ng-template>
-    </ion-col>
-    <ion-col class="ion-text-center">
-      <h3>End Date:</h3>
-      <h3 *ngIf="endDate else noEndDate">{{endDate | date: 'dd/MM/yyyy'}}</h3>
-      <ng-template #noEndDate>
-        <h3>Not Announced</h3>
-      </ng-template>
-    </ion-col>
-  </ion-row>
-
-  <ion-row class="ion-align-items-center">
-    <ion-col class="ion-text-center">
-      <h3>Members:</h3>
-      <h3>{{members}}</h3>
-    </ion-col>
-    <ion-col class="ion-text-center">
-      <h3>Score:</h3>
-      <h3 *ngIf="score != 0 else noScore">{{score}}</h3>
-      <ng-template #noScore>
-        <h3>No Score</h3>
-      </ng-template>
-    </ion-col>
-  </ion-row>
-
-</ion-grid>
+  <ng-template #notLoaded>
+    <h1 class="centerr">Loading...</h1>
+    <h2 class="centerr">Waiting API response...</h2>
+  </ng-template>
 
 </ion-content>

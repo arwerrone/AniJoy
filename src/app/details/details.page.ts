@@ -8,6 +8,7 @@ import { AnimeService } from '../services/anime.service';
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
+  loaded: boolean = false;
 
   malID: any;
   aniTitle: any;
@@ -56,7 +57,7 @@ export class DetailsPage implements OnInit {
 
         }
       })
-
+      this.loaded = true;
     })
   }
 

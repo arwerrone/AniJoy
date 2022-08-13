@@ -15,10 +15,14 @@ export class HomePage implements OnInit {
   constructor(private animeService: AnimeService) { }
 
   ngOnInit() {
-    this.testFunction();
+    this.getTop();
   }
 
-  testFunction(){
+  ionViewWillEnter(){
+    this.getTop();
+  }
+
+  getTop(){
     this.animeService.getTopAnimes().subscribe( data => {
       console.log(data);
       this.animes = data;

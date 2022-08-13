@@ -69,6 +69,15 @@
     
     </ion-grid>
 
+    <ion-slides [options]="option" class="ion-margin-top">
+      <ion-slide *ngFor="let pictures of extraPictures">
+        <ion-card>
+          <img src="{{pictures.large}}">
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+
+
   </div>
 
   <ng-template #notLoaded>

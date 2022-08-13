@@ -39,5 +39,15 @@ export class AnimeService {
       map(data => data['results']));
   }
 
+  getPictureForDetails(id){
+    return this.http.get(`${URL}anime/${id}/pictures`,{
+      headers: {
+        'X-RapidAPI-Key': api_key,
+        'X-RapidAPI-Host': api_host
+      }
+    }).pipe(
+      map(data => data['pictures']));
+
+  }
 
 }

@@ -21,9 +21,18 @@ export class DetailsPage implements OnInit {
   endDate: Date;
   members: number;
   score: number;
+  extraPictures: any;
 
 
   constructor(private activated_route: ActivatedRoute, private animeService: AnimeService) { }
+
+  option={
+    slidesPerView: 1.5,
+    centeredSlides: true,
+    loop: true,
+    spaceBetween: 10,
+    autoplay: true,
+  }
 
   ngOnInit() {
     this.activated_route.params.subscribe((data: Params) =>{
@@ -40,8 +49,8 @@ export class DetailsPage implements OnInit {
       data.forEach( element =>{
         if(element.mal_id == this.malID){
           
-          console.log(element);
-          console.log(typeof(element.score));
+          //console.log(element);
+          //console.log(typeof(element.score));
 
           this.thumbNail = element.image_url;
           this.aniSynopsis = element.synopsis; //Sometimes the Sysnopsis is incomplete because the API couldn't give it full
@@ -57,12 +66,24 @@ export class DetailsPage implements OnInit {
 
         }
       })
-      this.loaded = true;
+
     })
+
+    this.getPictures();
+
+    this.loaded = true;
+
   }
 
   redirectToExternal(){
     window.open(this.url, '_system', 'location=yes');
   }
 
+  getPictures(){
+    this.animeService.getPictureForDetails(this.malID).subscribe( data =>{
+      console.log(data);
+      this.extraPictures = data;
+
+    })
+  }
 }

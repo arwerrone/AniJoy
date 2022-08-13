@@ -3,10 +3,31 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Home</ion-title>
+    <ion-title>Top Animes At The Moment</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-list *ngFor="let ani of animes">
+    <ion-item>
+      <ion-thumbnail class="thumbnail" slot="start">
+        <ion-img [src]="ani.image_url"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ani.title}}</h3>
+        <p>Rank: {{ani.rank}}</p>
+        <p *ngIf="ani.start_date else noDate">{{ani.start_date}}</p>
+
+        <ng-template #noDate>
+          <p>not announced</p>
+        </ng-template>
+
+        </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+
 
 </ion-content>

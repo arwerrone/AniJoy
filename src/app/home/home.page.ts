@@ -2,11 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AnimeService } from '../services/anime.service';
 
 
-///tesdte
-
-
-
-///teste
 
 @Component({
   selector: 'app-home',
@@ -14,6 +9,8 @@ import { AnimeService } from '../services/anime.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+
+  animes: any;
 
   constructor(private animeService: AnimeService) { }
 
@@ -24,6 +21,8 @@ export class HomePage implements OnInit {
   testFunction(){
     this.animeService.getTopAnimes().subscribe( data => {
       console.log(data);
+      this.animes = data;
+      console.log(this.animes);
     })
   }
 

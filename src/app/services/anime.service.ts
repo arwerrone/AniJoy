@@ -29,16 +29,4 @@ export class AnimeService {
   }
 
 
-  // getTopAnimes(){
-  //   return this.http.get('https://jikan1.p.rapidapi.com/top/anime/1/upcoming', {
-  //     headers: {
-  //       'X-RapidAPI-Key': '8945cdd55emshdd923e137a7cc2dp1bf431jsn52087ee7fa89',
-  //       'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
-  //     }
-  //   }).pipe(
-  //     map(data => data['top']));
-  // }
-
-
-
 }

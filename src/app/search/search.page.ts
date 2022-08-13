@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimeService } from '../services/anime.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-search',
@@ -7,10 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchPage implements OnInit {
 
-  constructor() { }
+  constructor(private animeService: AnimeService, private alertController: AlertController) { }
+
+  result: any = '';
 
   ngOnInit() {
     
+  }
+
+  async queryString(toQuery: string){
+
+    if(!toQuery || toQuery.length < 4){
+      const alert = await this.alertController.create({
+        header: 'Fail to search',
+        message: 'Please type at least 4 characters',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }else{
+      this.animeService.searchAnime(toQuery.toLocaleLowerCase()).subscribe( data => {
+        this.result = data;
+      })
+    }
+
   }
 
 }

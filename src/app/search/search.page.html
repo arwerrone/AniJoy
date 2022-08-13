@@ -3,10 +3,44 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>search</ion-title>
+    <ion-title>Search For An Anime</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-toolbar style="padding-top: 7%;" class="ion-justify-content-center">
+    <ion-searchbar [(ngModel)]="toQuery" placeholder="Sailor Moon..."></ion-searchbar>
+  </ion-toolbar>
+  <div style="padding-top: 5px;" class="centerr">
+    <ion-button (click)="queryString(toQuery)" style="width: 80%;" expand="block">Search <ion-icon style="padding-left: 15px;" name="send"></ion-icon></ion-button>
+  </div>
+
+  <div *ngIf="result != '' else nothing">
+    <ion-list *ngFor="let ani of result">
+      <!--<ion-item (click)="itemSelected(ani)">-->
+      <ion-item [routerLink]="['../details/', ani.mal_id, ani.title]">
+        <ion-thumbnail class="thumbnail" slot="start">
+          <ion-img [src]="ani.image_url"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>{{ani.title}}</h3>
+          <p>Score: {{ani.score}}</p>
+          <p *ngIf="ani.start_date else noDate">{{ani.start_date | date: 'dd/MM/yyyy'}}</p>
+  
+          <ng-template #noDate>
+            <p>not announced</p>
+          </ng-template>
+  
+          </ion-label>
+      </ion-item>
+  
+    </ion-list>
+  </div>
+
+  <ng-template #nothing>
+    <h2 style="padding-top: 40%;" class="centerr">Search for an anime (•́ ◡ •̀)</h2>
+  </ng-template>
+  
 
 </ion-content>

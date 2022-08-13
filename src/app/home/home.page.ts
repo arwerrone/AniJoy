@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimeService } from '../services/anime.service';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +12,7 @@ export class HomePage implements OnInit {
   animes: any;
 
   constructor(
-    private animeService: AnimeService, private router: Router) { }
+    private animeService: AnimeService) { }
 
   ngOnInit() {
     this.getTop();
@@ -28,10 +27,5 @@ export class HomePage implements OnInit {
       this.animes = data;
     })
   }
-
-  // itemSelected(ani){
-  //   this.router.navigate(['/details',ani.mal_id, ani.title ]);
-  //   //this.router.navigate(['details',{id: ani.mal_id, title: ani.title} ]);
-  // }
 
 }

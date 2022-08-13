@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 const URL = 'https://jikan1.p.rapidapi.com/';
 const api_host = 'jikan1.p.rapidapi.com';
 const api_key = '8945cdd55emshdd923e137a7cc2dp1bf431jsn52087ee7fa89';
+const quote_key = '30c83811cd08fc49ad8b49c6caae66b7b5c329cda038';
 
 export interface Favorite{
   malID: string,
@@ -73,6 +74,18 @@ export class AnimeService {
       }
     }).pipe(
       map(data => data['promo']));
+  }
+
+  // ------------------- QUOTE SECTION --------------------------//
+  // This api gives a limit of 900 quotes, so eventually it will stop working
+  getRandomQuote(){
+    return this.http.get('https://animu1.p.rapidapi.com/quote',{
+      headers: {
+        'Auth': quote_key,
+        'X-RapidAPI-Key': api_key,
+        'X-RapidAPI-Host': 'animu1.p.rapidapi.com'
+      }
+    })
   }
 
   //-------------------- STORAGE SECTION -----------------------//

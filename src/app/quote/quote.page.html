@@ -9,4 +9,24 @@
 
 <ion-content>
 
+  <div>
+    <h2 style="padding-top: 5%;" class="centerr">Want to read a quote?</h2>
+    <div style="padding-top: 5px;" class="centerr">
+      <ion-button (click)="getQuote($event)" style="width: 80%;" expand="block">Press Me!</ion-button>
+    </div>
+  </div>
+
+  <div *ngIf="gotQuote else noQuote">
+    <div id="container">
+      <strong style="padding-bottom: 20px;">{{receptor.quote}}</strong>
+      <p>Author: {{receptor.author}}</p>
+      <p>Anime: {{receptor.anime}}</p>
+    </div>
+  </div>
+
+  <ng-template #noQuote>
+    <h2 style="padding-top: 40%;" class="centerr">Get a quote (＾▽＾)</h2>
+  </ng-template>
+
+
 </ion-content>
